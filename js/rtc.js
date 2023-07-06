@@ -72,7 +72,7 @@ function videoInit() {
     // 채널에 remote video or audio 추가시
     channel.on('rtcRemoteStreamAppend', function(event) {
         let stream = event.target;
-        let html = $(`div[name=${event.clientKey}]`, camWrap);
+        let html = $(`div[name="${event.clientKey}"]`, camWrap);
         if (!html.length) {
             html = $(res.remoteVideo).attr({ name: event.clientKey });
             camWrap.append(html);
@@ -86,7 +86,7 @@ function videoInit() {
     });
     // 채널에 remote video or audio 삭제시 ( 영상채널 나감 )
     channel.on('rtcRemoteStreamRemove', function(event) {
-        let html = $(`div.camvideo-wrap[name=${event.clientKey}]`, camWrap);
+        let html = $(`div.camvideo-wrap[name="${event.clientKey}"]`, camWrap);
         if (html.length) {
             html.remove();
         }
@@ -117,13 +117,13 @@ function videoInit() {
     // 채널에 remote audio 변경시
     channel.on('rtcRemoteAudioChanged', function(event) {
         let is_mic = event.enable;
-        let html = $(`div.camvideo-wrap[name=${event.clientKey}]`, camWrap);
+        let html = $(`div.camvideo-wrap[name="${event.clientKey}"]`, camWrap);
         $('.nomic', html).toggleClass('active', !is_mic);
     });
     // 채널에 remote video 변경시
     channel.on('rtcRemoteVideoChanged', function(event) {
         let is_cam = event.enable;
-        let html = $(`div.camvideo-wrap[name=${event.clientKey}]`, camWrap);
+        let html = $(`div.camvideo-wrap[name="${event.clientKey}"]`, camWrap);
         $('.nocam', html).toggleClass('active', !is_cam);
         $('.camvideo video', html).css({ 'display': is_cam ? '' : 'none' });
     });
